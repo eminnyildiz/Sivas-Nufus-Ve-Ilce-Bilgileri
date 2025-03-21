@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sivas İl ve İlçeler Nüfus</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h2>İsime Göre Sıralama</h2>
+    <ul id="liste">
+        <li>Akıncılar</li>
+        <li>Altınyayla</li>
+        <li>Divriği</li>
+        <li>Doğanşar</li>
+        <li>Gemerek</li>
+        <li>Gölova</li>
+        <li>Gürün</li>
+        <li>Hafik</li>
+        <li>İmranlı</li>
+        <li>Kangal</li>
+        <li>Koyulhisar</li>
+        <li>Suşehri</li>
+        <li>Şarkışla</li>
+        <li>Ulaş</li>
+        <li>Yıldızeli</li>
+        <li>Zara</li>
+    </ul>
+    <button onclick="siralaAlfabetik(true)">A'dan Z'ye Sırala</button>
+    <button onclick="siralaAlfabetik(false)">Z'den A'ya Sırala</button>
+    
+    <h3>Nüfusa Göre Sıralama</h3>
+    <ul id="liste2">
+        <li data-nufus="647000">Toplam Nüfus: 647.000</li>
+        <li data-nufus="392711">Merkezi: 392.711</li>
+        <li data-nufus="37340">Şarkışla: 37.340</li>
+        <li data-nufus="28382">Yıldızeli: 28.382</li>
+        <li data-nufus="24938">Suşehri: 24.938</li>
+        <li data-nufus="21951">Zara: 21.951</li>
+        <li data-nufus="21525">Gemerek: 21.525</li>
+        <li data-nufus="20176">Kangal: 20.176</li>
+        <li data-nufus="17486">Gürün: 17.486</li>
+        <li data-nufus="16204">Divriği: 16.204</li>
+        <li data-nufus="12212">Koyulhisar: 12.212</li>
+        <li data-nufus="9448">Hafik: 9.448</li>
+        <li data-nufus="8453">Altınyayla: 8.453</li>
+        <li data-nufus="8029">Ulaş: 8.029</li>
+        <li data-nufus="7438">İmranlı: 7.438</li>
+        <li data-nufus="4766">Akıncılar: 4.766</li>
+        <li data-nufus="3215">Gölova: 3.215</li>
+        <li data-nufus="2733">Doğanşar: 2.733</li>
+    </ul>
+    
+    <button onclick="siralaSayisal(false)">Büyükten Küçüğe Sırala</button>
+    <button onclick="siralaSayisal(true)">Küçükten Büyüğe Sırala</button>
+
+    <script>
+        function siralaAlfabetik(ascending) {
+            let liste = document.getElementById("liste");
+            let elemanlar = Array.from(liste.getElementsByTagName("li"));
+            elemanlar.sort((a, b) => ascending ? a.textContent.localeCompare(b.textContent, 'tr') : b.textContent.localeCompare(a.textContent, 'tr'));
+            liste.innerHTML = "";
+            elemanlar.forEach(eleman => liste.appendChild(eleman));
+        }
+
+        function siralaSayisal(ascending) {
+            let liste = document.getElementById("liste2");
+            let elemanlar = Array.from(liste.getElementsByTagName("li"));
+            elemanlar.sort((a, b) => ascending ? a.dataset.nufus - b.dataset.nufus : b.dataset.nufus - a.dataset.nufus);
+            liste.innerHTML = "";
+            elemanlar.forEach(eleman => liste.appendChild(eleman));
+        }
+    </script>
+
+    <a href="https://www.nufusu.com/il/sivas-nufusu" target="_blank">İl ve İlçelerin Nüfus Bilgileri</a>
+    
+</body>
+</html>
